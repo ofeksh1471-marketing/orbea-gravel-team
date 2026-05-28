@@ -73,6 +73,49 @@ const weights = {
   },
 };
 
+const submissionLabels = {
+  experience: {
+    question: "כמה זמן אתם רוכבים על גראבל?",
+    answers: {
+      new: "לא רכבתי אף פעם",
+      some: "עשיתי כמה רכיבות בחיי",
+      life: "גראבל זה החיים",
+    },
+  },
+  style: {
+    question: "איך הייתם מגדירים את סגנון הרכיבה שלכם?",
+    answers: {
+      fun: "רוכב בשביל הכיף",
+      trail: "מכור רציני לשטח",
+      competitive: "תחרותי",
+    },
+  },
+  priority: {
+    question: "מה הכי חשוב לכם באופני גראבל?",
+    answers: {
+      speed: "מהירות מהירות וקשיחות",
+      comfort: "שעות של נוחות",
+      confidence: "שלדת קרבון",
+    },
+  },
+  rides: {
+    question: "איזה סוג רכיבות אתם הכי אוהבים?",
+    answers: {
+      short_fast: "מהיר ועצבני",
+      long: "לצאת בזריחה לחזור בשקיעה",
+      unknown: "פותח שבילים חדשים",
+    },
+  },
+  electric: {
+    question: "איך אתם עם קצת סיוע חשמלי?",
+    answers: {
+      no: "הרגליים שלי מסתדרות לבד, תודה",
+      open: "פתוח להצעות",
+      yes: "בשבילי רק חשמלי",
+    },
+  },
+};
+
 const quizForm = document.querySelector("#quizForm");
 const overlay = document.querySelector("#resultOverlay");
 const scanGrid = document.querySelector("#scanGrid");
@@ -179,10 +222,11 @@ function runScanAnimation(modelKey) {
 function submitAnonymousResult(formData, result) {
   const payload = new URLSearchParams();
   payload.set("form-name", "orbea-gravel-results");
-  payload.set("result", models[result].name);
+  payload.set("תוצאה", models[result].name);
 
-  for (const [key, value] of formData.entries()) {
-    payload.set(key, value);
+  for (const [key, config] of Object.entries(submissionLabels)) {
+    const value = formData.get(key);
+    payload.set(config.question, config.answers[value] || value || "");
   }
 
   window.fetch("/", {
