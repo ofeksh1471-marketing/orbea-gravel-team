@@ -35,7 +35,9 @@
       </section>
 
       <section class="quiz-panel" aria-label="שאלון התאמת דגם">
-        <form id="quizForm" class="quiz-form">
+        <form id="quizForm" class="quiz-form" name="orbea-gravel-results" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="orbea-gravel-results" />
+          <input id="resultField" type="hidden" name="result" value="" />
           <div class="question" data-question="experience">
             <h2>כמה זמן אתם רוכבים על גראבל?</h2>
             <div class="answers three">

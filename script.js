@@ -81,6 +81,7 @@ const resultImage = document.querySelector("#resultImage");
 const resultName = document.querySelector("#resultName");
 const resultText = document.querySelector("#resultText");
 const resultLink = document.querySelector("#resultLink");
+const resultField = document.querySelector("#resultField");
 const tryAgain = document.querySelector("#tryAgain");
 
 const scanImages = Object.entries(models).flatMap(([key, model]) =>
@@ -105,6 +106,10 @@ function buildScanGrid() {
 function calculateResult(formData) {
   const scores = { terraH: 0, terraM: 0, race: 0, denna: 0 };
 
+  if (formData.get("electric") === "yes") {
+    return "denna";
+  }
+
   if (formData.get("experience") === "new") {
     return "terraH";
   }
@@ -114,10 +119,6 @@ function calculateResult(formData) {
     for (const [model, score] of Object.entries(answerWeights)) {
       scores[model] += score;
     }
-  }
-
-  if (formData.get("electric") === "yes") {
-    return "denna";
   }
 
   if (
@@ -168,14 +169,34 @@ function runScanAnimation(modelKey) {
   }, 86);
 }
 
+function submitAnonymousResult(formData, result) {
+  const payload = new URLSearchParams();
+  payload.set("form-name", "orbea-gravel-results");
+  payload.set("result", models[result].name);
+
+  for (const [key, value] of formData.entries()) {
+    payload.set(key, value);
+  }
+
+  window.fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: payload.toString(),
+  }).catch((error) => {
+    console.warn("Could not submit anonymous quiz result", error);
+  });
+}
+
 quizForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(quizForm);
   const result = calculateResult(formData);
+  resultField.value = models[result].name;
 
   overlay.classList.add("active");
   overlay.setAttribute("aria-hidden", "false");
   runScanAnimation(result);
+  submitAnonymousResult(formData, result);
 });
 
 tryAgain.addEventListener("click", () => {
