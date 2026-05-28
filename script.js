@@ -160,6 +160,10 @@ function calculateResult(formData) {
     return "denna";
   }
 
+  if (formData.get("experience") === "new" && formData.get("priority") === "confidence") {
+    return "terraM";
+  }
+
   if (formData.get("experience") === "new") {
     return "terraH";
   }
