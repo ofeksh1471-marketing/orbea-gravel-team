@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ORBEA Gravel Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <header class="brand-row" aria-label="ORBEA Recycles Spring Gravel">
+          <img class="brand-logo top-orbea" src="assets/logos/orbea-new-tight.png" alt="ORBEA" />
+          <span class="brand-separator" aria-hidden="true"></span>
+          <img class="brand-logo recycles" src="assets/logos/recycles.png" alt="Recycles" />
+          <span class="brand-separator" aria-hidden="true"></span>
+          <img class="brand-logo spring" src="assets/logos/spring-gravel.png" alt="Spring Gravel Gilboa 2026" />
+        </header>
+
+        <div class="hero-copy">
+          <div class="campaign-title" aria-label="ORBEA Gravel Team">
+            <span class="title-word title-orbea">ORBEA</span>
+            <span class="title-sticker">GRAVEL</span>
+            <span class="title-word title-team">TEAM</span>
+          </div>
+          <h1 id="page-title">
+            <span>ORBEA SPRING GRAVEL בפתח, וזה הזמן לגלות</span>
+            <span>איזה דגם מנבחרת הגראבל שלנו הוא הכי <em>אתם</em></span>
+          </h1>
+        </div>
+
+      </section>
+
+      <section class="quiz-panel" aria-label="שאלון התאמת דגם">
+        <form id="quizForm" class="quiz-form">
+          <div class="question" data-question="experience">
+            <h2>כמה זמן אתם רוכבים על גראבל?</h2>
+            <div class="answers three">
+              <label><input type="radio" name="experience" value="new" required />לא רכבתי אף פעם</label>
+              <label><input type="radio" name="experience" value="some" />עשיתי כמה רכיבות בחיי</label>
+              <label><input type="radio" name="experience" value="life" />גראבל זה החיים</label>
+            </div>
+          </div>
+
+          <div class="question" data-question="style">
+            <h2>איך הייתם מגדירים את סגנון הרכיבה שלכם?</h2>
+            <div class="answers three">
+              <label><input type="radio" name="style" value="fun" required />רוכב בשביל הכיף</label>
+              <label><input type="radio" name="style" value="trail" />מכור רציני לשטח</label>
+              <label><input type="radio" name="style" value="competitive" />תחרותי</label>
+            </div>
+          </div>
+
+          <div class="question" data-question="priority">
+            <h2>מה הכי חשוב לכם באופני גראבל?</h2>
+            <div class="answers three">
+              <label><input type="radio" name="priority" value="speed" required />מהירות מהירות וקשיחות</label>
+              <label><input type="radio" name="priority" value="comfort" />שעות של נוחות</label>
+              <label><input type="radio" name="priority" value="confidence" />ביטחון</label>
+            </div>
+          </div>
+
+          <div class="question" data-question="rides">
+            <h2>איזה סוג רכיבות אתם הכי אוהבים?</h2>
+            <div class="answers three">
+              <label><input type="radio" name="rides" value="short_fast" required />מהיר ועצבני</label>
+              <label><input type="radio" name="rides" value="long" />לצאת בזריחה לחזור בשקיעה</label>
+              <label><input type="radio" name="rides" value="unknown" />פותח שבילים חדשים</label>
+            </div>
+          </div>
+
+          <div class="question" data-question="electric">
+            <h2>איך אתם עם קצת סיוע חשמלי?</h2>
+            <div class="answers three">
+              <label><input type="radio" name="electric" value="no" required />הרגליים שלי מסתדרות לבד, תודה</label>
+              <label><input type="radio" name="electric" value="open" />פתוח להצעות</label>
+              <label><input type="radio" name="electric" value="yes" />בשבילי רק חשמלי</label>
+            </div>
+          </div>
+
+          <button class="submit-button" type="submit">גלו איזה דגם אתם</button>
+        </form>
+      </section>
+
+      <footer class="privacy-note" aria-label="מדיניות פרטיות">
+        <strong>פרטיות:</strong>
+        השאלון אנונימי. אנחנו שומרים רק את התשובות והתוצאה כדי להבין אילו דגמי ORBEA Gravel מעניינים את המשתתפים. לא נאספים פרטים אישיים.
+      </footer>
+    </main>
+
+    <div id="resultOverlay" class="result-overlay" aria-hidden="true">
+      <div class="result-stage" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+        <div id="scanGrid" class="scan-grid" aria-hidden="true"></div>
+
+        <article id="resultCard" class="result-card" aria-live="polite">
+          <div class="result-copy">
+            <p id="resultTitle" class="result-kicker">אתם הכי -</p>
+            <h2 id="resultName">
+              <img src="assets/logos/orbea-new-tight.png" alt="ORBEA" />
+              <span></span>
+            </h2>
+            <p id="resultText"></p>
+          </div>
+          <img id="resultImage" class="result-bike-image" src="" alt="" />
+          <div class="result-actions">
+            <a id="resultLink" class="cta-button" href="#" target="_blank" rel="noopener">לפרטים נוספים על הדגם</a>
+            <button id="tryAgain" class="ghost-button" type="button">לנסות שוב</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
