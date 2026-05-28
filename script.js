@@ -2,7 +2,7 @@ const models = {
   terraH: {
     name: "ORBEA TERRA H",
     url: "https://daa.activetrail.biz/orbea-terra-2026",
-    image: "assets/bikes/terra-h-result-v2.png?v=1",
+    image: "assets/bikes/terra-h-result-v2.jpg?v=1",
     text: "אתם אנשים שאוהבים לנסות דברים חדשים. ORBEA Terra אלומיניום הם אופני הכניסה המושלמים לעולם הגראבל.",
     gallery: [
       "assets/bikes/terra/front-3.jpg",
@@ -13,7 +13,7 @@ const models = {
   terraM: {
     name: "ORBEA TERRA M",
     url: "https://daa.activetrail.biz/orbea-terra-2026",
-    image: "assets/bikes/terra/result-v2.png?v=3",
+    image: "assets/bikes/terra/result-v2.jpg?v=3",
     text: "אתם אנשים שאוהבים לחקור, לצאת למסעות ולבחור בכל פעם דרך אחרת.",
     gallery: [
       "assets/bikes/terra/front-2.jpg",
@@ -24,7 +24,7 @@ const models = {
   race: {
     name: "ORBEA TERRA RACE",
     url: "https://daa.activetrail.biz/orbea-terra-race-2026",
-    image: "assets/bikes/terra-race/result-v2.png?v=3",
+    image: "assets/bikes/terra-race/result-v2.jpg?v=3",
     text: "אתם אנשים של קצב גבוה, ביצועים ורכיבה מדויקת וחדה.",
     gallery: [
       "assets/bikes/terra-race/front.jpg",
@@ -35,7 +35,7 @@ const models = {
   denna: {
     name: "ORBEA DENNA",
     url: "https://daa.activetrail.biz/ORBEA-Denna",
-    image: "assets/bikes/denna/result-v2.png?v=3",
+    image: "assets/bikes/denna/result-v2.jpg?v=3",
     text: "אתם אנשים של כיף, הרפתקאות ורכיבות ארוכות עם קצת יותר כוח להמשיך.",
     gallery: [
       "assets/bikes/denna/front.jpg",
@@ -100,6 +100,13 @@ function buildScanGrid() {
     image.alt = item.alt;
     tile.append(image);
     scanGrid.append(tile);
+  });
+}
+
+function preloadResultImages() {
+  Object.values(models).forEach((model) => {
+    const image = new Image();
+    image.src = model.image;
   });
 }
 
@@ -213,3 +220,4 @@ document.addEventListener("keydown", (event) => {
 });
 
 buildScanGrid();
+preloadResultImages();
